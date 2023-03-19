@@ -43,7 +43,6 @@ function App() {
           <Application />
         </AppStoreProvider>
       )}
-      <ToastContainer />
     </NextUIProvider>
   );
 }
