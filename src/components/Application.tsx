@@ -3,23 +3,24 @@ import CodeEditorWindow from './CodeEditorWindow';
 import { classnames } from '../utils/general';
 
 import OutputWindow from './OutputWindow';
-import { Button } from '@nextui-org/react';
+import { Button, Card, Text } from '@nextui-org/react';
 import { StackInput } from './StackInput';
 import { BigNumber } from 'ethers';
 import { compile } from '../utils/compile';
-import { ErrorNotification } from '../utils/Notifications';
 import { useAppState } from '../store/AppStore';
 
 const Application = () => {
   const [code, setCode] = useState('');
   const [outputDetails, setOutputDetails] = useState(null);
   const [processing, setProcessing] = useState(false);
+  const [error, setError] = useState<string | null>(null)
 
   const [stack, setState] = useState([1, 2]);
   const appState = useAppState();
 
   const onExecute = async (code: string) => {
     try {
+      setError(null)
       if (!appState) throw Error('appState is null');
       setProcessing(true);
       const opcodes = compile(code);
@@ -30,8 +31,7 @@ const Application = () => {
       setProcessing(false);
     } catch (error: any) {
       setProcessing(false);
-      debugger;
-      ErrorNotification(error.message);
+      setError(error.message)
     }
   };
 
@@ -67,6 +67,15 @@ const Application = () => {
             >
               {processing ? 'Executing' : 'Compile and Execute'}
             </Button>
+          </div>
+
+          <div className="flex flex-col items-center pt-5">
+            {error && <Card isHoverable color='red' variant="bordered" css={{ mw: "400px", backgroundColor: '$red500' }}>
+              <Card.Body color='red'>
+                <Text>{error}</Text>
+              </Card.Body>
+            </Card>
+            }
           </div>
         </div>
       </div>
