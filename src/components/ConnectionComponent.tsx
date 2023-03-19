@@ -20,7 +20,7 @@ export const ConnectionComponent = ({
   }, [setConnection]);
   return (
     <div className="flex h-screen items-center justify-center">
-      <Button onClick={connectMetamask}>Connect Metamask</Button>
+      <Button onPress={connectMetamask}>Connect Metamask</Button>
     </div>
   );
 };
