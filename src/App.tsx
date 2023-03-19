@@ -1,7 +1,6 @@
 import { NextUIProvider, createTheme } from '@nextui-org/react';
 import 'react-toastify/dist/ReactToastify.css';
 import { useState } from 'react';
-import { ToastContainer } from 'react-toastify';
 import './App.css';
 import { ConnectionComponent } from './components/ConnectionComponent';
 import Application from './components/Application';
