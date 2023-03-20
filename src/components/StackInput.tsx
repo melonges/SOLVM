@@ -3,9 +3,9 @@ import NumberInputs from './NumberInput';
 
 export const StackInput = ({ numbers, setNumbers }: any) => {
   const handleAddNumber = () => {
-    setNumbers([...numbers, 0]);
+    setNumbers([...numbers, 0].map(i => Number(i)));
   };
-  const handleNumberChange = (index: number, value: number) => {
+  const handleNumberChange = (index: number, value: string) => {
     const newNumbers = [...numbers];
     newNumbers[index] = value;
     setNumbers(newNumbers);

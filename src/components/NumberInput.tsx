@@ -12,11 +12,12 @@ function NumberInputs({
       {numbers.map((number, index) => (
         <Input
           css={{ marginTop: '12px' }}
+          label="Number"
           fullWidth
           key={index}
           type="number"
           value={number}
-          onChange={(e) => handleNumberChange(index, Number(e.target.value))}
+          onChange={(e) => handleNumberChange(index, e.target.value)}
         />
       ))}
     </>
